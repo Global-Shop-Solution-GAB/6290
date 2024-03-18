@@ -1,0 +1,456 @@
+﻿Program.Sub.ScreenSU.Start
+Gui.fmGoalMX..Create(BaseForm)
+Gui.fmGoalMX..Size(15045,7950)
+Gui.fmGoalMX..MinX(0)
+Gui.fmGoalMX..MinY(0)
+Gui.fmGoalMX..Position(0,0)
+Gui.fmGoalMX..BackColor(-2147483633)
+Gui.fmGoalMX..MousePointer(0)
+Gui.fmGoalMX..Event(UnLoad,fmGoalMX_UnLoad)
+Gui.fmGoalMX..Caption("Sales Goals Maintenance")
+Gui.fmGoalMX..AlwaysOnTop(False)
+Gui.fmGoalMX..FontName("Tahoma")
+Gui.fmGoalMX..FontSize(8.25)
+Gui.fmGoalMX..ControlBox(True)
+Gui.fmGoalMX..MaxButton(True)
+Gui.fmGoalMX..MinButton(True)
+Gui.fmGoalMX..Moveable(True)
+Gui.fmGoalMX..Sizeable(True)
+Gui.fmGoalMX..ShowInTaskBar(True)
+Gui.fmGoalMX..TitleBar(True)
+Gui.fmGoalMX.lblGoalDescription.Create(Label,"Goal Description",True,1935,255,0,90,135,True,0,"Arial",8,-2147483633,0,0)
+Gui.fmGoalMX.lblGoalDescription.FontStyle(True,False,False,False,False)
+Gui.fmGoalMX.lblGoalDescription.BorderStyle(0)
+Gui.fmGoalMX.txtGoalDescription.Create(TextBox,"",True,4350,300,0,90,360,True,0,"Arial",8,-2147483643,1)
+Gui.fmGoalMX.cmdDel.Create(Button)
+Gui.fmGoalMX.cmdDel.Size(855,375)
+Gui.fmGoalMX.cmdDel.Position(14040,330)
+Gui.fmGoalMX.cmdDel.Caption("Delete")
+Gui.fmGoalMX.cmdDel.Event(Click,cmdDel_Click)
+Gui.fmGoalMX.cmdDel.Enabled(True)
+Gui.fmGoalMX.cmdDel.Visible(True)
+Gui.fmGoalMX.cmdDel.Zorder(0)
+Gui.fmGoalMX.cmdDel.FontName("Tahoma")
+Gui.fmGoalMX.cmdDel.FontSize(8.25)
+Gui.fmGoalMX.cmdAdd.Create(Button)
+Gui.fmGoalMX.cmdAdd.Size(1215,375)
+Gui.fmGoalMX.cmdAdd.Position(12750,330)
+Gui.fmGoalMX.cmdAdd.Caption("Add/Update")
+Gui.fmGoalMX.cmdAdd.Event(Click,cmdAdd_Click)
+Gui.fmGoalMX.cmdAdd.Enabled(True)
+Gui.fmGoalMX.cmdAdd.Visible(True)
+Gui.fmGoalMX.cmdAdd.Zorder(0)
+Gui.fmGoalMX.cmdAdd.FontName("Tahoma")
+Gui.fmGoalMX.cmdAdd.FontSize(8.25)
+Gui.fmGoalMX.lblSP.Create(Label,"Salesperson",True,1935,255,0,6780,135,True,0,"Arial",8,-2147483633,0,0)
+Gui.fmGoalMX.lblSP.FontStyle(True,False,False,False,False)
+Gui.fmGoalMX.lblSP.BorderStyle(0)
+Gui.fmGoalMX.lblGoal.Create(Label,"Goal",True,360,210,0,9810,135,True,0,"Arial",8,-2147483633,0,0)
+Gui.fmGoalMX.lblGoal.FontStyle(True,False,False,False,False)
+Gui.fmGoalMX.lblGoal.BorderStyle(0)
+Gui.fmGoalMX.lblAMT.Create(Label,"Goal Amount",True,1065,210,0,11460,135,True,0,"Arial",8,-2147483633,0,0)
+Gui.fmGoalMX.lblAMT.FontStyle(True,False,False,False,False)
+Gui.fmGoalMX.lblAMT.BorderStyle(0)
+Gui.fmGoalMX.cboSP.Create(ComboBox)
+Gui.fmGoalMX.cboSP.Size(2955,300)
+Gui.fmGoalMX.cboSP.Position(6780,360)
+Gui.fmGoalMX.cboSP.Enabled(True)
+Gui.fmGoalMX.cboSP.Visible(True)
+Gui.fmGoalMX.cboSP.Zorder(0)
+Gui.fmGoalMX.cboSP.FontName("Tahoma")
+Gui.fmGoalMX.cboSP.FontSize(8.25)
+Gui.fmGoalMX.cboGoal.Create(ComboBox)
+Gui.fmGoalMX.cboGoal.Size(1575,300)
+Gui.fmGoalMX.cboGoal.Position(9810,360)
+Gui.fmGoalMX.cboGoal.Enabled(True)
+Gui.fmGoalMX.cboGoal.Visible(True)
+Gui.fmGoalMX.cboGoal.Zorder(0)
+Gui.fmGoalMX.cboGoal.FontName("Tahoma")
+Gui.fmGoalMX.cboGoal.FontSize(8.25)
+Gui.fmGoalMX.txtAmt.Create(TextBox,"",True,1215,300,0,11460,360,True,0,"Arial",8,-2147483643,1)
+Gui.fmGoalMX.GsGCGoalMX.Create(GsGridControl)
+Gui.fmGoalMX.GsGCGoalMX.Size(6480,6540)
+Gui.fmGoalMX.GsGCGoalMX.Position(90,735)
+Gui.fmGoalMX.GsGCGoalMX.Event(RowCellClick,GsGCGoalMX_RowCellClick)
+Gui.fmGoalMX.GsGCGoalMX.Enabled(True)
+Gui.fmGoalMX.GsGCGoalMX.Visible(True)
+Gui.fmGoalMX.GsGCGoalMX.Zorder(0)
+Gui.fmGoalMX.GsGCGoalMX.Anchor(15)
+Gui.fmGoalMX.GsGcSPGoals.Create(GsGridControl)
+Gui.fmGoalMX.GsGcSPGoals.Size(8115,6540)
+Gui.fmGoalMX.GsGcSPGoals.Position(6780,735)
+Gui.fmGoalMX.GsGcSPGoals.Event(RowCellClick,GsGcSPGoals_RowCellClick)
+Gui.fmGoalMX.GsGcSPGoals.Enabled(True)
+Gui.fmGoalMX.GsGcSPGoals.Visible(True)
+Gui.fmGoalMX.GsGcSPGoals.Zorder(0)
+Gui.fmGoalMX.GsGcSPGoals.Anchor(15)
+Gui.fmGoalMX.GsGcSPGoals.Dock(0)
+Gui.fmGoalMX.cmdGoalAdd.Create(Button)
+Gui.fmGoalMX.cmdGoalAdd.Size(1215,375)
+Gui.fmGoalMX.cmdGoalAdd.Position(4470,330)
+Gui.fmGoalMX.cmdGoalAdd.Caption("Add/Update")
+Gui.fmGoalMX.cmdGoalAdd.Event(Click,cmdGoalAdd_Click)
+Gui.fmGoalMX.cmdGoalAdd.Enabled(True)
+Gui.fmGoalMX.cmdGoalAdd.Visible(True)
+Gui.fmGoalMX.cmdGoalAdd.Zorder(0)
+Gui.fmGoalMX.cmdGoalAdd.FontName("Tahoma")
+Gui.fmGoalMX.cmdGoalAdd.FontSize(8.25)
+Gui.fmGoalMX.cmdGoalDel.Create(Button)
+Gui.fmGoalMX.cmdGoalDel.Size(855,375)
+Gui.fmGoalMX.cmdGoalDel.Position(5715,330)
+Gui.fmGoalMX.cmdGoalDel.Caption("Delete")
+Gui.fmGoalMX.cmdGoalDel.Event(Click,cmdGoalDel_Click)
+Gui.fmGoalMX.cmdGoalDel.Enabled(True)
+Gui.fmGoalMX.cmdGoalDel.Visible(True)
+Gui.fmGoalMX.cmdGoalDel.Zorder(0)
+Gui.fmGoalMX.cmdGoalDel.FontName("Tahoma")
+Gui.fmGoalMX.cmdGoalDel.FontSize(8.25)
+Gui.fmGoalMX.txtGoalId.Create(TextBox,"",False,1215,300,0,105,360,True,0,"Arial",8,-2147483643,1)
+Program.Sub.ScreenSU.End
+
+Program.Sub.Preflight.Start
+Program.Sub.Preflight.End
+
+Program.Sub.Main.Start
+F.Intrinsic.Control.Try
+'TJS, March 2021
+'DRIV-LOK
+'Quote 12661-0
+'Business Case: The customer would like to replace a manual process captured on a spreadsheet with current GSS Functionality
+'Proposed Solution: We are going to use PowerBI as a means to pull the data is needed by the sales person to manage their quotes more efficiently.
+
+'This script is to provide a means of maintaining Sales goals and applying them to the Salespersons
+
+F.Intrinsic.Control.If(V.Caller.GSSVersion,<=,"2018.1")
+	F.Intrinsic.Control.CallSub(SetIcon)
+F.Intrinsic.Control.EndIf
+
+F.Intrinsic.Control.CallSub(GoalMxData)
+F.Intrinsic.Control.CallSub(SPGoalData)
+
+Gui.fmGoalMX..Show
+
+F.Intrinsic.Control.Catch
+	F.Intrinsic.Control.CallSub(Error,"SubRoutine",V.Ambient.CurrentSubroutine,"eNumber",V.Ambient.ErrorNumber,"eDescription",V.Ambient.ErrorDescription)
+F.Intrinsic.Control.EndTry
+Program.Sub.Main.End
+
+Program.Sub.GoalMxData.Start
+F.Intrinsic.Control.Try
+V.Local.sSQL.Declare
+
+F.ODBC.Connection!conts.OpenCompanyConnection
+
+F.Intrinsic.Control.If(V.DataTable.dtGoalMx.Exists)
+	F.Data.Datatable.Close("dtGoalMx")
+F.Intrinsic.Control.EndIf
+
+F.Data.Datatable.CreateFromSQL("dtGoalMx","conts","Select * from GCG_6290_GOAL_MX",True)
+
+F.ODBC.Connection!conts.Close
+
+Gui.fmGoalMX.GsGCGoalMX.AddGridviewFromDatatable("gvGoalMx","dtGoalMx")
+Gui.fmGoalMX.GsGCGoalMX.MainView("gvGoalMx")
+Gui.fmGoalMX.GsGCGoalMX.SetGridviewProperty("gvGoalMx","ReadOnly",True)
+Gui.fmGoalMX.GsGCGoalMX.SetGridviewProperty("gvGoalMx","Editable",False)
+
+Gui.fmGoalMX.GsGCGoalMX.SetColumnProperty("gvGoalMx","GOAL_ID","Caption","Id")
+Gui.fmGoalMX.GsGCGoalMX.SetColumnProperty("gvGoalMx","GOAL_DESCRIPTION","Caption","Goal Description")
+
+Gui.fmGoalMX.GsGCGoalMX.SetColumnProperty("gvGoalMx","GOAL_ID","HeaderFontBold",True)
+Gui.fmGoalMX.GsGCGoalMX.SetColumnProperty("gvGoalMx","GOAL_DESCRIPTION","HeaderFontBold",True)
+
+Gui.fmGoalMX.GsGCGoalMX.SetColumnProperty("gvGoalMx","GOAL_ID","MaxWidth",50)
+
+F.Intrinsic.Control.Catch
+	F.Intrinsic.Control.CallSub(Error,"SubRoutine",V.Ambient.CurrentSubroutine,"eNumber",V.Ambient.ErrorNumber,"eDescription",V.Ambient.ErrorDescription)
+F.Intrinsic.Control.EndTry
+Program.Sub.GoalMxData.End
+
+Program.Sub.cmdGoalAdd_Click.Start
+F.Intrinsic.Control.Try
+V.Local.iGoalID.Declare
+V.Local.sGoalDesc.Declare
+V.Local.sSQL.Declare
+
+F.Intrinsic.Control.If(V.Screen.fmGoalMX!txtGoalId.Text,<>,"")
+	V.Local.iGoalID.Set(V.Screen.fmGoalMX!txtGoalId.Text.Long)
+F.Intrinsic.Control.Else
+	V.Local.iGoalID.Set(-999)
+F.Intrinsic.Control.EndIf
+
+V.Local.sGoalDesc.Set(V.Screen.fmGoalMX!txtGoalDescription.Text.Trim)
+
+F.ODBC.Connection!conts.OpenCompanyConnection
+
+F.Intrinsic.String.Build("Select * from GCG_6290_GOAL_MX where GOAL_ID = '{0}' and GOAL_DESCRIPTION = '{1}'",V.Local.iGoalID,V.Local.sGoalDesc,V.Local.sSQL)
+F.ODBC.Connection!conts.ExecuteAndReturn(V.Local.sSQL,V.Local.sSQL)
+
+F.Intrinsic.Control.If(V.Local.sSQL.Trim,=,"")
+	F.Intrinsic.String.Build("Insert into GCG_6290_GOAL_MX (GOAL_DESCRIPTION) values('{0}')",V.Local.sGoalDesc,V.Local.sSQL)
+F.Intrinsic.Control.Else
+	F.Intrinsic.String.Build("Update GCG_6290_GOAL_MX set GOAL_DESCRIPTION = '{0}' where GOAL_ID = '{1}'",V.Local.sGoalDesc,V.Local.iGoalID,V.Local.sSQL)
+F.Intrinsic.Control.EndIf
+
+F.ODBC.Connection!conts.Execute(V.Local.sSQL)
+
+Gui.fmGoalMX.cboGoal.ClearItems()
+
+Gui.fmGoalMX.cboGoal.AddItem("",0)
+F.Data.Dictionary.CreateFromSQL("dictGoal","conts","Select GOAL_ID,Cast(GOAL_ID as Char)+' | '+GOAL_DESCRIPTION  as GOAL from GCG_6290_GOAL_MX")
+Gui.fmGoalMX.cboGoal.AddItems("Dictionary","dictGoal")
+F.Data.Dictionary.Close("dictGoal")
+
+F.ODBC.Connection!conts.Close
+
+Gui.fmGoalMX.txtGoalId.Text("")
+Gui.fmGoalMX.txtGoalDescription.Text("")
+
+F.Intrinsic.Control.CallSub(GoalMxData)
+
+F.Intrinsic.Control.Catch
+	F.Intrinsic.Control.CallSub(Error,"SubRoutine",V.Ambient.CurrentSubroutine,"eNumber",V.Ambient.ErrorNumber,"eDescription",V.Ambient.ErrorDescription)
+F.Intrinsic.Control.EndTry
+Program.Sub.cmdGoalAdd_Click.End
+
+Program.Sub.cmdGoalDel_Click.Start
+F.Intrinsic.Control.Try
+V.Local.sSQL.Declare
+V.Local.iGoalID.Declare
+
+V.Local.iGoalID.Set(V.Screen.fmGoalMX!txtGoalId.Text.Trim)
+
+F.Intrinsic.String.Build("Delete GCG_6290_GOAL_MX where GOAL_ID = '{0}'",V.Local.iGoalID,V.Local.sSQL)
+
+F.ODBC.Connection!conts.OpenCompanyConnection
+
+F.ODBC.Connection!conts.Execute(V.Local.sSQL)
+
+F.ODBC.Connection!conts.Close
+
+Gui.fmGoalMX.txtGoalId.Text("")
+Gui.fmGoalMX.txtGoalDescription.Text("")
+
+F.Intrinsic.Control.CallSub(GoalMxData)
+
+F.Intrinsic.Control.Catch
+	F.Intrinsic.Control.CallSub(Error,"SubRoutine",V.Ambient.CurrentSubroutine,"eNumber",V.Ambient.ErrorNumber,"eDescription",V.Ambient.ErrorDescription)
+F.Intrinsic.Control.EndTry
+Program.Sub.cmdGoalDel_Click.End
+
+Program.Sub.GsGCGoalMX_RowCellClick.Start
+F.Intrinsic.Control.Try
+V.Local.iGoalID.Declare
+V.Local.sGoalDesc.Declare
+
+Gui.fmGoalMX.GsGCGoalMX.GetCellValueByColumnName("gvGoalMx","GOAL_ID",V.Args.RowIndex,V.Local.iGoalID)
+Gui.fmGoalMX.GsGCGoalMX.GetCellValueByColumnName("gvGoalMx","GOAL_DESCRIPTION",V.Args.RowIndex,V.Local.sGoalDesc)
+
+Gui.fmGoalMX.txtGoalId.Text(V.Local.iGoalID)
+Gui.fmGoalMX.txtGoalDescription.Text(V.Local.sGoalDesc)
+
+F.Intrinsic.Control.Catch
+	F.Intrinsic.Control.CallSub(Error,"SubRoutine",V.Ambient.CurrentSubroutine,"eNumber",V.Ambient.ErrorNumber,"eDescription",V.Ambient.ErrorDescription)
+F.Intrinsic.Control.EndTry
+Program.Sub.GsGCGoalMX_RowCellClick.End
+
+Program.Sub.SPGoalData.Start
+F.Intrinsic.Control.Try
+
+F.ODBC.Connection!conts.OpenCompanyConnection
+
+Gui.fmGoalMX.cboSP.ClearItems()
+Gui.fmGoalMX.cboGoal.ClearItems()
+
+Gui.fmGoalMX.cboSP.AddItem("",0)
+F.Data.Dictionary.CreateFromSQL("dictSP","conts","Select ID,ID+' | '+RTRIM(NAME) as NAME_ID from SALESPERSONS")
+Gui.fmGoalMX.cboSP.AddItems("Dictionary","dictSP")
+F.Data.Dictionary.Close("dictSP")
+
+Gui.fmGoalMX.cboGoal.AddItem("",0)
+F.Data.Dictionary.CreateFromSQL("dictGoal","conts","Select GOAL_ID,Cast(GOAL_ID as Char)+' | '+GOAL_DESCRIPTION  as GOAL from GCG_6290_GOAL_MX")
+Gui.fmGoalMX.cboGoal.AddItems("Dictionary","dictGoal")
+F.Data.Dictionary.Close("dictGoal")
+
+F.Intrinsic.Control.If(V.DataTable.dtSPGoals.Exists)
+	F.Data.Datatable.Close("dtSPGoals")
+F.Intrinsic.Control.EndIf
+
+F.Data.Datatable.CreateFromSQL("dtSPGoals","conts","Select * from GCG_6290_SP_GOALS",True)
+
+F.ODBC.Connection!conts.Close
+
+Gui.fmGoalMX.GsGcSPGoals.AddGridviewFromDatatable("gvSPGoals","dtSPGoals")
+Gui.fmGoalMX.GsGcSPGoals.MainView("gvSPGoals")
+
+Gui.fmGoalMX.GsGcSPGoals.SetGridviewProperty("gvSPGoals","ReadOnly",True)
+Gui.fmGoalMX.GsGcSPGoals.SetGridviewProperty("gvSPGoals","Editable",False)
+
+Gui.fmGoalMX.GsGcSPGoals.SetColumnProperty("gvSPGoals","SP_ID","Caption","Salesperson")
+Gui.fmGoalMX.GsGcSPGoals.SetColumnProperty("gvSPGoals","GOAL_ID","Caption","Goal Id")
+Gui.fmGoalMX.GsGcSPGoals.SetColumnProperty("gvSPGoals","GOAL_AMOUNT","Caption","Goal Amount")
+
+Gui.fmGoalMX.GsGcSPGoals.SetColumnProperty("gvSPGoals","SP_ID","HeaderFontBold",True)
+Gui.fmGoalMX.GsGcSPGoals.SetColumnProperty("gvSPGoals","GOAL_ID","HeaderFontBold",True)
+Gui.fmGoalMX.GsGcSPGoals.SetColumnProperty("gvSPGoals","GOAL_AMOUNT","HeaderFontBold",True)
+
+Gui.fmGoalMX.GsGcSPGoals.SetColumnProperty("gvSPGoals","GOAL_AMOUNT","DisplayCustomNumeric","#,###,###")
+
+F.Intrinsic.Control.Catch
+	F.Intrinsic.Control.CallSub(Error,"SubRoutine",V.Ambient.CurrentSubroutine,"eNumber",V.Ambient.ErrorNumber,"eDescription",V.Ambient.ErrorDescription)
+F.Intrinsic.Control.EndTry
+Program.Sub.SPGoalData.End
+
+Program.Sub.cmdAdd_Click.Start
+F.Intrinsic.Control.Try
+V.Local.sSP.Declare
+V.Local.sGoal.Declare
+V.Local.sGoalAmt.Declare
+V.Local.sSQL.Declare
+
+V.Local.sSP.Set(V.Screen.fmGoalMX!cboSP.Text)
+V.Local.sGoal.Set(V.Screen.fmGoalMX!cboGoal.Text)
+V.Local.sGoalAmt.Set(V.Screen.fmGoalMX!txtAmt.Text)
+
+F.Intrinsic.String.Split(V.Local.sSP," | ",V.Local.sSP)
+F.Intrinsic.String.Split(V.Local.sGoal," | ",V.Local.sGoal)
+
+F.Intrinsic.String.Build("Select * from GCG_6290_SP_GOALS where SP_ID = '{0}' and GOAL_ID = '{1}'",V.Local.sSP(0).Trim,V.Local.sGoal(0).Trim,V.Local.sSQL)
+
+F.ODBC.Connection!conts.OpenCompanyConnection
+
+F.ODBC.Connection!conts.ExecuteAndReturn(V.Local.sSQL,V.Local.sSQL)
+
+F.Intrinsic.Control.If(V.Local.sSQL.Trim,=,"")
+	F.Intrinsic.String.Build("Insert into GCG_6290_SP_GOALS (SP_ID,GOAL_ID,GOAL_AMOUNT) values ('{0}','{1}','{2}')",V.Local.sSP(0).Trim,V.Local.sGoal(0).Long,V.Local.sGoalAmt.Float,V.Local.sSQL)
+F.Intrinsic.Control.Else
+	F.Intrinsic.String.Build("Update GCG_6290_SP_GOALS set GOAL_AMOUNT = '{0}' where SP_ID = '{1}' and GOAL_ID = '{2}'",V.Local.sGoalAmt.Float,V.Local.sSP(0).Trim,V.Local.sGoal(0).Long,V.Local.sSQL)
+F.Intrinsic.Control.EndIf
+
+F.ODBC.Connection!conts.Execute(V.Local.sSQL)
+
+F.ODBC.Connection!conts.Close
+
+Gui.fmGoalMX.cboSP.Text("")
+Gui.fmGoalMX.cboGoal.Text("")
+Gui.fmGoalMX.txtAmt.Text("")
+
+F.Intrinsic.Control.CallSub(SPGoalData)
+
+F.Intrinsic.Control.Catch
+	F.Intrinsic.Control.CallSub(Error,"SubRoutine",V.Ambient.CurrentSubroutine,"eNumber",V.Ambient.ErrorNumber,"eDescription",V.Ambient.ErrorDescription)
+F.Intrinsic.Control.EndTry
+Program.Sub.cmdAdd_Click.End
+
+Program.Sub.cmdDel_Click.Start
+F.Intrinsic.Control.Try
+V.Local.sSP.Declare
+V.Local.sGoal.Declare
+V.Local.sSQL.Declare
+
+V.Local.sSP.Set(V.Screen.fmGoalMX!cboSP.Text)
+V.Local.sGoal.Set(V.Screen.fmGoalMX!cboGoal.Text)
+
+F.Intrinsic.String.Split(V.Local.sSP," | ",V.Local.sSP)
+F.Intrinsic.String.Split(V.Local.sGoal," | ",V.Local.sGoal)
+
+F.Intrinsic.String.Build("Delete GCG_6290_SP_GOALS where SP_ID = '{0}' and GOAL_ID = '{1}'",V.Local.sSP(0).Trim,V.Local.sGoal(0).Long,V.Local.sSQL)
+
+F.ODBC.Connection!conts.OpenCompanyConnection
+
+F.ODBC.Connection!conts.Execute(V.Local.sSQL)
+
+F.ODBC.Connection!conts.Close
+
+Gui.fmGoalMX.cboSP.Text("")
+Gui.fmGoalMX.cboGoal.Text("")
+Gui.fmGoalMX.txtAmt.Text("")
+
+F.Intrinsic.Control.CallSub(SPGoalData)
+
+F.Intrinsic.Control.Catch
+	F.Intrinsic.Control.CallSub(Error,"SubRoutine",V.Ambient.CurrentSubroutine,"eNumber",V.Ambient.ErrorNumber,"eDescription",V.Ambient.ErrorDescription)
+F.Intrinsic.Control.EndTry
+Program.Sub.cmdDel_Click.End
+
+Program.Sub.GsGcSPGoals_RowCellClick.Start
+F.Intrinsic.Control.Try
+V.Local.sSP.Declare
+V.Local.sGoal.Declare
+V.Local.sGoalAmt.Declare
+V.Local.sSQL.Declare
+
+Gui.fmGoalMX.GsGcSPGoals.GetCellValueByColumnName("gvSPGoals","SP_ID",V.Args.RowIndex,V.Local.sSP)
+Gui.fmGoalMX.GsGcSPGoals.GetCellValueByColumnName("gvSPGoals","GOAL_ID",V.Args.RowIndex,V.Local.sGoal)
+Gui.fmGoalMX.GsGcSPGoals.GetCellValueByColumnName("gvSPGoals","GOAL_AMOUNT",V.Args.RowIndex,V.Local.sGoalAmt)
+
+F.ODBC.Connection!conts.OpenCompanyConnection
+
+F.Intrinsic.String.Build("Select ID+' | '+RTRIM(NAME) as NAME_ID from SALESPERSONS  where ID = '{0}'",V.Local.sSP,V.Local.sSP)
+F.ODBC.Connection!conts.ExecuteAndReturn(V.Local.sSP,V.Local.sSP)
+
+F.Intrinsic.String.Build("Select Cast(GOAL_ID as Char)+' | '+GOAL_DESCRIPTION as GOAL from GCG_6290_GOAL_MX where GOAL_ID = '{0}'",V.Local.sGoal.Long,V.Local.sGoal)
+F.ODBC.Connection!conts.ExecuteAndReturn(V.Local.sGoal,V.Local.sGoal)
+
+F.Intrinsic.Control.If(V.Local.sGoal.Trim,=,"")
+	Gui.fmGoalMX.GsGcSPGoals.GetCellValueByColumnName("gvSPGoals","GOAL_ID",V.Args.RowIndex,V.Local.sGoal)
+F.Intrinsic.Control.EndIf
+
+F.ODBC.Connection!conts.Close
+
+Gui.fmGoalMX.cboSP.Text(V.Local.sSP)
+Gui.fmGoalMX.cboGoal.Text(V.Local.sGoal)
+Gui.fmGoalMX.txtAmt.Text(V.Local.sGoalAmt)
+
+F.Intrinsic.Control.Catch
+	F.Intrinsic.Control.CallSub(Error,"SubRoutine",V.Ambient.CurrentSubroutine,"eNumber",V.Ambient.ErrorNumber,"eDescription",V.Ambient.ErrorDescription)
+F.Intrinsic.Control.EndTry
+Program.Sub.GsGcSPGoals_RowCellClick.End
+
+Program.Sub.SetIcon.Start
+F.Intrinsic.Control.Try
+V.Local.sForm.Declare
+V.Local.bExists.Declare
+V.Local.sIcon.Declare
+V.Local.iCounter.Declare
+
+F.Intrinsic.String.Build("{0}\ART\gss2.ico",V.Caller.GlobalDir,v.Local.sIcon)
+F.Intrinsic.File.Exists(V.Local.sIcon, V.Local.bExists)
+F.Intrinsic.Control.If(V.Local.bExists.Not)
+    F.Intrinsic.String.Build("{0}\GAB\GAS\gss2.ico",V.Caller.PluginsDir,v.Local.sIcon)
+    F.Intrinsic.File.Exists(V.Local.sIcon, V.Local.bExists)
+    F.Intrinsic.Control.If(V.Local.bExists.Not)
+        F.Intrinsic.Control.ExitSub
+    F.Intrinsic.Control.EndIf
+F.Intrinsic.Control.EndIf
+
+F.Intrinsic.UI.GetFormList(V.Local.sForm)
+F.Intrinsic.String.Split(V.Local.sForm, "*!*", V.Local.sForm)
+
+F.Intrinsic.Control.For(V.Local.iCounter, 0, V.Local.sForm.UBound, 1)
+    Gui.[V.Local.sForm(V.Local.iCounter)]..Icon(V.Local.sIcon)
+F.Intrinsic.Control.Next(V.Local.iCounter)
+
+F.Intrinsic.Control.Catch
+	F.Intrinsic.Control.CallSub(Error,"SubRoutine",V.Ambient.CurrentSubroutine,"eNumber",V.Ambient.ErrorNumber,"eDescription",V.Ambient.ErrorDescription)
+F.Intrinsic.Control.EndTry
+Program.Sub.SetIcon.End
+
+Program.Sub.fmGoalMX_UnLoad.Start
+F.Intrinsic.Control.End
+Program.Sub.fmGoalMX_UnLoad.End
+
+Program.Sub.Error.Start
+V.Local.sError.Declare
+V.Local.iRet.Declare
+V.Local.sSep.Declare
+
+F.Intrinsic.String.Build("-------------------------------------------------------------------------------------",,V.Local.sSep)
+F.Intrinsic.String.Build("({5}-{6}){0}{7}{0}Project: {4}{0}{7}{0}Sub: {1}{0}Error: {2}, {3}", V.Ambient.NewLine, V.Args.SubRoutine, V.Args.eNumber, V.Args.eDescription,V.Caller.ScriptFile,V.Ambient.Date, V.Ambient.Time,V.Local.sSep,V.Local.sError)
+F.Intrinsic.UI.Msgbox(V.Local.sError,"Error",V.Local.iRet)
+Program.Sub.Error.End
+
+Program.Sub.Comments.Start
+${$5$}$2.0.0.0$}$2
+${$6$}$tsmith$}$20210323050227432$}$xqPbj9atw05FglvzeFsZ9cqXP+qvG6tXysT023z9yhhEJFjqdRaM2C0BJMqqB0mOodStax92iXE=
+Program.Sub.Comments.End
