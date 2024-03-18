@@ -1,0 +1,65 @@
+﻿Program.Sub.Preflight.Start
+Program.Sub.Preflight.End
+
+Program.Sub.Main.Start
+F.Intrinsic.Control.Try
+'TJS, March 2021
+'DRIV-LOK
+'Quote 12661-0
+'Business Case: The customer would like to replace a manual process captured on a spreadsheet with current GSS Functionality
+'Proposed Solution: We are going to use PowerBI as a means to pull the data is needed by the sales person to manage their quotes more efficiently.
+
+'This script is to keep the sort field from being modified from the Customer Master screen and will populate the field from CRM_UF_VALUE.UF4 if there is data there.
+V.Local.sSQL.Declare
+V.Local.sC_SORT_1.Declare
+V.Local.sUF4.Declare
+
+
+F.Intrinsic.Control.If(V.Caller.Hook,=,14350)
+	F.ODBC.Connection!conts.OpenCompanyConnection
+	F.Intrinsic.String.Build("Select C_SORT_1 from CUSTOMER_SALES where CUSTOMER = '{0}' and REC = '2'",V.Passed.000002.Trim,V.Local.sSQL)
+	F.ODBC.Connection!conts.ExecuteAndReturn(V.Local.sSQL,V.Local.sC_SORT_1)
+	
+	F.Intrinsic.String.Build("Select UF4,UID from CRM_UF_VALUE where COMPID = '{0}'",V.Passed.000002.Trim,V.Local.sSQL)
+	F.ODBC.Connection!conts.ExecuteAndReturn(V.Local.sSQL,V.Local.sUF4)
+	
+	F.Intrinsic.String.Split(V.Local.sUF4,"*!*",V.Local.sUF4)
+	
+	'Cases - sUF4 should overwrite sC_SORT_1 unless sUF4 is blank
+	
+	F.Intrinsic.Control.If(V.Local.sC_SORT_1.Trim,<>,V.Local.sUF4(0).Trim,"AND",V.Local.sUF4(0).Trim,<>,"")
+		F.Intrinsic.String.Build("Update CUSTOMER_SALES set C_SORT_1 = '{0}' where CUSTOMER = '{1}' and REC = '2'",V.Local.sUF4(0).Trim,V.Passed.000002.Trim,V.Local.sSQL)
+		V.Passed.000038.Set(V.Local.sUF4(0).Trim)
+	F.Intrinsic.Control.Elseif(V.Local.sUF4(1).Trim,=,"OOB","AND",V.Local.sC_SORT_1.Trim,<>,"")
+		F.Intrinsic.String.Build("Insert into CRM_UF_VALUE (TYPE,COMPID,COMPTYPE,UF4) values ('15','{0}','15','{1}')",V.Passed.000002.Trim,V.Local.sC_SORT_1.Trim,V.Local.sSQL)
+		V.Passed.000038.Set(V.Local.sC_SORT_1.Trim)
+	F.Intrinsic.Control.EndIf
+	
+	F.ODBC.Connection!conts.Execute(V.Local.sSQL)		
+
+	F.ODBC.Connection!conts.Close	
+
+	F.Intrinsic.UI.ChangeCallerProperty(V.Passed.000038,"LOCK",1)
+F.Intrinsic.Control.EndIf
+
+F.Intrinsic.Control.End
+
+F.Intrinsic.Control.Catch
+	F.Intrinsic.Control.CallSub(Error,"SubRoutine",V.Ambient.CurrentSubroutine,"eNumber",V.Ambient.ErrorNumber,"eDescription",V.Ambient.ErrorDescription)
+F.Intrinsic.Control.EndTry
+Program.Sub.Main.End
+
+Program.Sub.Error.Start
+V.Local.sError.Declare
+V.Local.iRet.Declare
+V.Local.sSep.Declare
+
+F.Intrinsic.String.Build("-------------------------------------------------------------------------------------",,V.Local.sSep)
+F.Intrinsic.String.Build("({5}-{6}){0}{7}{0}Project: {4}{0}{7}{0}Sub: {1}{0}Error: {2}, {3}", V.Ambient.NewLine, V.Args.SubRoutine, V.Args.eNumber, V.Args.eDescription,V.Caller.ScriptFile,V.Ambient.Date, V.Ambient.Time,V.Local.sSep,V.Local.sError)
+F.Intrinsic.UI.Msgbox(V.Local.sError,"Error",V.Local.iRet)
+Program.Sub.Error.End
+
+Program.Sub.Comments.Start
+${$5$}$2.0.0.0$}$2
+${$6$}$tsmith$}$20210322162019597$}$xqPbj9atw05FglvzeFsZ9cqXP+qvG6tXysT023z9yhjSivxWK7a+gpApUbl5ARPOvxNXUzRc1bE=
+Program.Sub.Comments.End
