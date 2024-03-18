@@ -1,0 +1,86 @@
+﻿Program.Sub.Preflight.Start
+Program.Sub.Preflight.End
+
+Program.Sub.Main.Start
+F.Intrinsic.Control.Try
+'TJS, March 2021
+'DRIV-LOK
+'Quote 12661-0
+'Business Case: The customer would like to replace a manual process captured on a spreadsheet with current GSS Functionality
+'Proposed Solution: We are going to use PowerBI as a means to pull the data is needed by the sales person to manage their quotes more efficiently.
+
+'This script will log when a new prospect is created.
+
+'Hook 29850
+'Passed Variables: PPSTOPT_000042 - Salesperson Name, 000005 - Bill to name, 000002 - Prospect ID 
+
+F.Intrinsic.Control.If(V.Caller.Hook,=,29850,"AND",V.Caller.Switches,=,"N")
+	F.Intrinsic.Control.CallSub(Data)
+F.Intrinsic.Control.EndIf
+
+F.Intrinsic.Control.Catch
+	F.Intrinsic.Control.CallSub(Error,"SubRoutine",V.Ambient.CurrentSubroutine,"eNumber",V.Ambient.ErrorNumber,"eDescription",V.Ambient.ErrorDescription)
+F.Intrinsic.Control.EndTry
+Program.Sub.Main.End
+
+Program.Sub.Data.Start
+F.Intrinsic.Control.Try
+V.Local.sProspect.Declare
+V.Local.sProspName.Declare
+V.Local.sSP.Declare
+V.Local.sCreatedBy.Declare
+V.Local.sDate.Declare
+
+V.Local.sProspect.Set(V.Passed.000002.Trim)
+V.Local.sProspName.Set(V.Passed.000005.Trim)
+V.Local.sSP.Set(V.Passed.PPSTOPT_000042.Trim)
+V.Local.sCreatedBy.Set(V.Caller.User)
+V.Local.sDate.Set(V.Ambient.Now)
+
+F.Intrinsic.Control.If(V.DataTable.dtProsp.Exists)
+	F.Data.Datatable.Close("dtProsp")
+F.Intrinsic.Control.EndIf
+
+F.Data.Datatable.Create("dtProsp",False)
+F.Data.Datatable.AddColumn("dtProsp","PROSPECT","String")
+F.Data.Datatable.AddColumn("dtProsp","NAME_PROSPECT","String")
+F.Data.Datatable.AddColumn("dtProsp","SALESPERSON","String")
+F.Data.Datatable.AddColumn("dtProsp","DATE_CREATED","DateTime")
+F.Data.Datatable.AddColumn("dtProsp","CREATED_BY","String")
+
+F.Data.Datatable.AddRow("dtProsp","PROSPECT",V.Local.sProspect,"NAME_PROSPECT",V.Local.sProspName,"SALESPERSON",V.Local.sSP,"DATE_CREATED",V.Local.sDate,"CREATED_BY",V.Local.sCreatedBy)
+
+F.ODBC.Connection!conts.OpenCompanyConnection
+
+F.Data.Dictionary.CreateFromSQL("dictSP","conts","Select RTRIM(NAME),ID from SALESPERSONS")
+F.Data.Dictionary.SetDefaultReturn("dictSP","")
+
+F.Data.Datatable.FillFromDictionary("dtProsp","dictSP","SALESPERSON")
+
+F.Data.Dictionary.Close("dictSP")
+
+F.Data.Datatable.SaveToDB("dtProsp","conts","GCG_6290_NEW_PROSP","PROSPECT",128)
+
+F.ODBC.Connection!conts.Close
+
+F.Data.Datatable.Close("dtProsp")
+
+F.Intrinsic.Control.Catch
+	F.Intrinsic.Control.CallSub(Error,"SubRoutine",V.Ambient.CurrentSubroutine,"eNumber",V.Ambient.ErrorNumber,"eDescription",V.Ambient.ErrorDescription)
+F.Intrinsic.Control.EndTry
+Program.Sub.Data.End
+
+Program.Sub.Error.Start
+V.Local.sError.Declare
+V.Local.iRet.Declare
+V.Local.sSep.Declare
+
+F.Intrinsic.String.Build("-------------------------------------------------------------------------------------",,V.Local.sSep)
+F.Intrinsic.String.Build("({5}-{6}){0}{7}{0}Project: {4}{0}{7}{0}Sub: {1}{0}Error: {2}, {3}", V.Ambient.NewLine, V.Args.SubRoutine, V.Args.eNumber, V.Args.eDescription,V.Caller.ScriptFile,V.Ambient.Date, V.Ambient.Time,V.Local.sSep,V.Local.sError)
+F.Intrinsic.UI.Msgbox(V.Local.sError,"Error",V.Local.iRet)
+Program.Sub.Error.End
+
+Program.Sub.Comments.Start
+${$5$}$2.0.0.0$}$2
+${$6$}$tsmith$}$20210315143802029$}$xqPbj9atw05FglvzeFsZ9cqXP+qvG6tX88A9bphf8Y6yA8TuDbQW1YzAaP+wLFuKsTHY+vCu8l4=
+Program.Sub.Comments.End
